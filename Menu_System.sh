@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/Cellar/bash/5.0.11/bin/bash
 #
 # October 5, 2019
 
@@ -36,11 +36,18 @@ while [ "$usr_input" != "6" ]; do
             ;;
 
         2)  echo "Create backup"
-            echo "Desintation file: \c"     # -n doesn't work, but appending \c does
-            read des_file
-            cd ~/test
-            cp -Rinp ./ $des_file
-            
+            echo -n "Desintation directory: "     
+            read -r des_directory                           # CANNOT USE "~" to significy home directory. Must use complete filepath
+            if [ ! -e "$des_directory" ]
+            then
+                echo "$des_directory is not a directory"
+            else
+                cd ~/test                                       # for testing purposes
+                src_directory=$(pwd)
+                echo "Source directory:         $src_directory"
+                echo "Destination directory:    $des_directory"
+                cp -pR "$src_directory"/* "$des_directory"
+            fi
             ;;
         3) echo "Create ZIP archive";;
         4) echo "Output text files";;
