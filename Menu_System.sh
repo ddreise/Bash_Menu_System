@@ -21,14 +21,15 @@ echo "2. Create backup of current files in user specified folder"
 echo "3. Create a ZIP archive of current files in user specified archive"
 echo "4. Output all text files one page at a time in current folder"
 echo "5. Delete files in current folder"
-echo "6. Exit"
+echo "6. Output help information"
+echo "7. Exit"
 echo
 echo "*******************************************"
 echo
 
 
 # Loop continues until user Exits program
-while [ "$usr_input" != "6" ]; do
+while [ "$usr_input" != "7" ]; do
 
     read usr_input                          # wait for user input
 
@@ -101,14 +102,26 @@ while [ "$usr_input" != "6" ]; do
             echo
             ;;
 
-        6)  echo "Exit" ;;                  # Exit program
+        6)  echo "Output help information"
+            echo 
+            echo "Here is some helpful information regarding Menu System functions: "
+            echo " - You cannot use home directory symbol when choosing directories. You must use full filepath."
+            echo "          Can use: /usr/johndoe/test"
+            echo "          Cannot use: ~/test"
+            echo " - The file deletion option will only delete files, not directories"
+            echo " - When unzipping from zipped files, entire path will be used"
+            echo 
+
+            ;;
+
+        7)  echo "Exit" ;;                  # Exit program
         *)  echo "Invalid input."           # If invalid input, output invalid input.
             echo
             ;;
 
     esac
 
-    if [ $usr_input != "6" ]
+    if [ $usr_input != "7" ]
     then
         echo -n "Back to main menu: "
     fi
