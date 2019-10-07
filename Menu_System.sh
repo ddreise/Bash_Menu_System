@@ -11,7 +11,7 @@
 
 
 echo 
-echo "***** Menu System *****"
+echo "*************** Menu System ***************"
 echo 
 echo "1. List file details in current folder"
 echo "2. Create backup of current files in user specified folder"
@@ -19,6 +19,8 @@ echo "3. Create a ZIP archive of current files in user specified archive"
 echo "4. Output all text files one page at a time in current folder"
 echo "5. Delete files in current folder"
 echo "6. Exit"
+echo
+echo "*******************************************"
 echo
 
 # NOTES
@@ -49,12 +51,43 @@ while [ "$usr_input" != "6" ]; do
                 cp -pR "$src_directory"/* "$des_directory"
             fi
             ;;
-        3) echo "Create ZIP archive";;
-        4) echo "Output text files";;
-        5) echo "Delete files";;
+            
+        3)  echo "Create ZIP archive"           
+            echo -n "Destination directory to zip to: "
+            read -r des_zip
+            echo -n "Desired name of new zipped file: "
+            read -r des_zip_filename
+
+            des_zip="$des_zip$des_zip_filename"
+
+            cd ~/test
+            src_zip=$(pwd)
+            echo "Source directory:         $src_zip"
+            echo "Destination directory:    $des_zip"
+
+ 
+            zip "$des_zip" -r "$src_zip"/*
+
+            ;;
+
+        4)  echo "Output text files"
+            cd ~/test
+            for f in *.txt
+            do
+                less $f
+                echo
+            done
+
+            ;;
+
+        5)  echo "Delete files"
+            
+            ;;
         6) echo "Exit";;
         *) echo "wrong";;
 
     esac
+
+    echo -n "Back to main menu: "
 
 done
