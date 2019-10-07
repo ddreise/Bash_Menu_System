@@ -1,4 +1,4 @@
-#!/usr/local/Cellar/bash/5.0.11/bin/bash
+#!/bin/bash
 #
 # Operating Systems - Assignment 2
 # Menu System
@@ -101,13 +101,16 @@ while [ "$usr_input" != "6" ]; do
             echo
             ;;
 
-        6)  echo "Exit";;                   # Exit program
+        6)  echo "Exit" ;;                  # Exit program
         *)  echo "Invalid input."           # If invalid input, output invalid input.
             echo
             ;;
 
     esac
 
-    echo -n "Back to main menu: "
+    if [ $usr_input != "6" ]
+    then
+        echo -n "Back to main menu: "
+    fi
 
 done
