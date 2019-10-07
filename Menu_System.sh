@@ -81,10 +81,27 @@ while [ "$usr_input" != "6" ]; do
             ;;
 
         5)  echo "Delete files"
-            
+            cd ~/des_test
+            cur_dir=$(pwd)
+            echo "Are you sure you want to delete all files in $cur_dir? [y/n]"
+            read choice
+            if [ $choice = 'y' ]
+            then
+                rm -v $cur_dir/*
+
+            elif [ $choice = 'n' ]
+            then 
+                echo "Aborting \"delete files\" command"
+
+            else
+                echo "Invalid input"
+            fi
             ;;
-        6) echo "Exit";;
-        *) echo "wrong";;
+
+        6)  echo "Exit";;
+        *)  echo "Invalid input."
+            echo
+            ;;
 
     esac
 
