@@ -38,6 +38,8 @@ while [ "$usr_input" != "6" ]; do
         2)  echo "Create backup"
             echo "Desintation file: \c"     # -n doesn't work, but appending \c does
             read des_file
+            cd ~/test
+            cp -Rinp ./ $des_file
             
             ;;
         3) echo "Create ZIP archive";;
